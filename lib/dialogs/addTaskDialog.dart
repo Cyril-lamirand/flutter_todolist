@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 // Dependencies
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-// Widget(s)
 import 'package:dropdown_button2/dropdown_button2.dart';
-
+// Widget(s)
 
 class AddTaskDialog extends StatefulWidget {
   const AddTaskDialog({

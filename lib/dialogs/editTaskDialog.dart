@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// Widget(s)
 import 'package:dropdown_button2/dropdown_button2.dart';
-
+// Widget(s)
 
 class EditTaskDialog extends StatefulWidget {
   final String taskId, taskName, taskDesc, taskTag;

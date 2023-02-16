@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Dependencies
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+// Widget(s)
 
 class DeleteTaskDialog extends StatefulWidget {
   final String taskId, taskName;
