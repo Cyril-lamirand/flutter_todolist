@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 // Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
+// Screen(s)
+import 'package:a5_todolist/views/welcome.dart';
 // Widget(s)
 import '../widgets/app_bar_w.dart';
 // Fragment(s)
@@ -26,7 +28,12 @@ class _ProfileState extends State<Profile> {
 
   void signOut() async {
     await _auth.signOut();
-    Navigator.pushReplacementNamed(context, "welcome_screen");
+    Navigator.pushReplacement<void, void>(
+        context,
+        MaterialPageRoute<void>(
+            builder: (BuildContext context) => const Welcome()
+        )
+    );
   }
 
   //using this function you can use the credentials of the user

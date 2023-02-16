@@ -9,6 +9,8 @@ import '../widgets/rounded_button_w.dart';
 // Fragment(s)
 import '../fragments/box_decoration_f.dart';
 import '../fragments/input_decoration_f.dart';
+// Screen(s)
+import 'home.dart';
 
 var kTextFieldDecoration = appInputDecoration;
 var appContainerDecoration = boxDecorationContainer;
@@ -76,7 +78,12 @@ class _LoginState extends State<Login> {
                               try {
                                 final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
                                 if (user != null) {
-                                  Navigator.pushReplacementNamed(context, "home_screen");
+                                  Navigator.pushReplacement<void, void>(
+                                      context,
+                                      MaterialPageRoute<void>(
+                                          builder: (BuildContext context) => Home()
+                                      )
+                                  );
                                 }
                               } catch (e) {
                                 print(e);
