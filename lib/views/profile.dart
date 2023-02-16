@@ -1,10 +1,11 @@
 // Default
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../fragments/box_decoration_f.dart';
+// Dependencies
+import 'package:firebase_auth/firebase_auth.dart';
+// Widget(s)
 import '../widgets/app_bar_w.dart';
-
+// Fragment(s)
+import '../fragments/box_decoration_f.dart';
 
 var loggedinUser;
 var appContainerDecoration = boxDecorationContainer;
@@ -16,6 +17,8 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final _auth = FirebaseAuth.instance;
+
+  @override
   void initState() {
     super.initState();
     getCurrentUser();
