@@ -1,4 +1,5 @@
 // Default
+import 'package:a5_todolist/widgets/list_tasks_w.dart';
 import 'package:flutter/material.dart';
 // Dependencies
 // Widget(s)
@@ -23,12 +24,8 @@ class _HomeState extends State<Home> {
         child: Scaffold(
           appBar: const AppBarWidget(title: "Accueil", hideActionProfile: false, actionReturnButton: false),
           bottomNavigationBar: const BottomBarWidget(),
-          body: ListView(
-            children: const <Widget>[
-
-            ],
-          ),
           extendBody: true,
+          body: ListTasksWidget(),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
             onPressed: () {

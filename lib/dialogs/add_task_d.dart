@@ -154,7 +154,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         'taskName': taskName,
         'taskDesc': taskDesc,
         'taskTag': taskTag,
-      },
+      }
     );
     String taskId = docRef.id;
     await FirebaseFirestore.instance.collection('tasks').doc(taskId).update(
