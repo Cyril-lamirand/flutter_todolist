@@ -23,7 +23,11 @@ class _BottomBarWidget extends State<BottomBarWidget> {
           selectedItemColor: Colors.deepPurpleAccent,
           unselectedItemColor: Colors.deepPurple,
           onTap: (int) {
-            // TODO : Change URL
+            if (int == 0) {
+              Navigator.pushNamed(context, "home_screen");
+            } else {
+              Navigator.pushNamed(context, "login_screen");
+            }
           },
           items: const [
             BottomNavigationBarItem(

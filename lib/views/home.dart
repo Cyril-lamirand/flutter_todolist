@@ -1,10 +1,10 @@
 // Default
-import 'package:a5_todolist/widgets/list_tasks_w.dart';
 import 'package:flutter/material.dart';
 // Dependencies
 // Widget(s)
 import '../widgets/app_bar_w.dart';
 import '../widgets/bottom_bar_w.dart';
+import 'package:a5_todolist/widgets/list_tasks_w.dart';
 // Fragment(s)
 import '../dialogs/add_task_d.dart';
 import '../fragments/box_decoration_f.dart';
