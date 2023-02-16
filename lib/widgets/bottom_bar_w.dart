@@ -1,5 +1,8 @@
 // Default
 import 'package:flutter/material.dart';
+// Views
+import '../views/home.dart';
+import '../views/categories.dart';
 
 class BottomBarWidget extends StatefulWidget {
   const BottomBarWidget({Key? key}) : super(key: key);
@@ -24,9 +27,19 @@ class _BottomBarWidget extends State<BottomBarWidget> {
           unselectedItemColor: Colors.deepPurple,
           onTap: (int) {
             if (int == 0) {
-              Navigator.pushNamed(context, "home_screen");
+              Navigator.pushReplacement<void, void>(
+                context,
+                MaterialPageRoute<void>(
+                    builder: (BuildContext context) => Home()
+                )
+              );
             } else {
-              Navigator.pushNamed(context, "login_screen");
+              Navigator.pushReplacement<void, void>(
+                  context,
+                  MaterialPageRoute<void>(
+                      builder: (BuildContext context) => Categories()
+                  )
+              );
             }
           },
           items: const [

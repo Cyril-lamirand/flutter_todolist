@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // Widget(s)
 import '../widgets/app_bar_w.dart';
 import '../widgets/bottom_bar_w.dart';
-import '../widgets/list_tasks_w.dart';
 // Fragment(s)
 import '../fragments/box_decoration_f.dart';
 // Dialog(s)
@@ -12,21 +11,20 @@ import '../dialogs/add_task_d.dart';
 
 var appContainerDecoration = boxDecorationContainer;
 
-class Home extends StatefulWidget {
+class Categories extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _CategoriesState createState() => _CategoriesState();
 }
 
-class _HomeState extends State<Home> {
+class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: appContainerDecoration,
         child: Scaffold(
-          appBar: const AppBarWidget(title: "Accueil", hideActionProfile: false, actionReturnButton: false),
+          appBar: const AppBarWidget(title: "Categories", hideActionProfile: false, actionReturnButton: false),
           bottomNavigationBar: const BottomBarWidget(),
           extendBody: true,
-          body: const ListTasksWidget(),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
