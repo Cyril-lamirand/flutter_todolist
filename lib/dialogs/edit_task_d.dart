@@ -34,9 +34,9 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
     return AlertDialog(
       scrollable: true,
       title: const Text(
-        'Update Task',
+        'Mettre à jour',
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16, color: Colors.brown),
+        style: TextStyle(fontSize: 16, color: Colors.deepPurple),
       ),
       content: SizedBox(
         height: height * 0.35,
@@ -52,7 +52,7 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
                     horizontal: 20,
                     vertical: 20,
                   ),
-                  icon: const Icon(CupertinoIcons.square_list, color: Colors.brown),
+                  icon: const Icon(CupertinoIcons.square_list, color: Colors.deepPurple),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -69,7 +69,7 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
                     horizontal: 20,
                     vertical: 20,
                   ),
-                  icon: const Icon(CupertinoIcons.bubble_left_bubble_right, color: Colors.brown),
+                  icon: const Icon(CupertinoIcons.bubble_left_bubble_right, color: Colors.deepPurple),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -78,7 +78,7 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
               const SizedBox(height: 15),
               Row(
                 children: <Widget>[
-                  const Icon(CupertinoIcons.tag, color: Colors.brown),
+                  const Icon(CupertinoIcons.tag, color: Colors.deepPurple),
                   const SizedBox(width: 15.0),
                   Expanded(
                     child: DropdownButtonFormField2(
@@ -128,11 +128,14 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
             Navigator.of(context, rootNavigator: true).pop();
           },
           style: ElevatedButton.styleFrom(
-            primary: Colors.grey,
+            primary: Colors.deepPurple,
           ),
-          child: const Text('Cancel'),
+          child: const Text('Retour'),
         ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.deepPurpleAccent,
+          ),
           onPressed: () {
             final taskName = taskNameController.text;
             final taskDesc = taskDescController.text;
@@ -141,7 +144,7 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
             _updateTasks(taskName, taskDesc, taskTag);
             Navigator.of(context, rootNavigator: true).pop();
           },
-          child: const Text('Update'),
+          child: const Text('Mettre à jour'),
         ),
       ],
     );

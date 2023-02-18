@@ -20,17 +20,17 @@ class _DeleteTaskDialogState extends State<DeleteTaskDialog> {
     return AlertDialog(
       scrollable: true,
       title: const Text(
-        'Delete Task',
+        'Supprimer',
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16, color: Colors.brown),
+        style: TextStyle(fontSize: 18, color: Colors.deepPurple),
       ),
       content: SizedBox(
         child: Form(
           child: Column(
             children: <Widget>[
               const Text(
-                'Are you sure you want to delete this task?',
-                style: TextStyle(fontSize: 14),
+                'Êtes-vous sûr de vouloir supprimer cette tâche ?',
+                style: TextStyle(fontSize: 12),
               ),
               const SizedBox(height: 15),
               Text(
@@ -49,9 +49,9 @@ class _DeleteTaskDialogState extends State<DeleteTaskDialog> {
             Navigator.of(context, rootNavigator: true).pop();
           },
           style: ElevatedButton.styleFrom(
-            primary: Colors.grey,
+            primary: Colors.deepPurple,
           ),
-          child: const Text('Cancel'),
+          child: const Text('Retour'),
         ),
         ElevatedButton(
           onPressed: () {
@@ -59,9 +59,9 @@ class _DeleteTaskDialogState extends State<DeleteTaskDialog> {
             Navigator.of(context, rootNavigator: true).pop();
           },
           style: ElevatedButton.styleFrom(
-            primary: Colors.brown,
+            primary: Colors.deepPurpleAccent,
           ),
-          child: const Text('Delete'),
+          child: const Text('Supprimer'),
         ),
       ],
     );

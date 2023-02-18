@@ -30,7 +30,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
       title: const Text(
         'New Task',
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16, color: Colors.brown),
+        style: TextStyle(fontSize: 16, color: Colors.deepPurple),
       ),
       content: SizedBox(
         height: height * 0.35,
@@ -48,7 +48,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   ),
                   hintText: 'Task',
                   hintStyle: const TextStyle(fontSize: 14),
-                  icon: const Icon(CupertinoIcons.square_list, color: Colors.brown),
+                  icon: const Icon(CupertinoIcons.square_list, color: Colors.deepPurple),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -67,7 +67,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   ),
                   hintText: 'Description',
                   hintStyle: const TextStyle(fontSize: 14),
-                  icon: const Icon(CupertinoIcons.bubble_left_bubble_right, color: Colors.brown),
+                  icon: const Icon(CupertinoIcons.bubble_left_bubble_right, color: Colors.deepPurple),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -76,7 +76,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               const SizedBox(height: 15),
               Row(
                 children: <Widget>[
-                  const Icon(CupertinoIcons.tag, color: Colors.brown),
+                  const Icon(CupertinoIcons.tag, color: Colors.deepPurple),
                   const SizedBox(width: 15.0),
                   Expanded(
                     child: DropdownButtonFormField2(
@@ -130,9 +130,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             Navigator.of(context, rootNavigator: true).pop();
           },
           style: ElevatedButton.styleFrom(
-            primary: Colors.grey,
+            primary: Colors.deepPurple,
           ),
-          child: const Text('Cancel'),
+          child: const Text('Retour'),
         ),
         ElevatedButton(
           onPressed: () {
@@ -142,7 +142,10 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             _addTasks(taskName: taskName, taskDesc: taskDesc, taskTag: taskTag);
             Navigator.of(context, rootNavigator: true).pop();
           },
-          child: const Text('Save'),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.deepPurpleAccent,
+          ),
+          child: const Text('Enregistrer'),
         ),
       ],
     );
