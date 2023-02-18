@@ -11,7 +11,7 @@ import '../widgets/rounded_button_w.dart';
 import '../fragments/box_decoration_f.dart';
 import '../fragments/input_decoration_f.dart';
 // Screen(s)
-import 'package:a5_todolist/views/login.dart';
+import 'confirm.dart';
 
 var kTextFieldDecoration = appInputDecoration;
 var appContainerDecoration = boxDecorationContainer;
@@ -144,7 +144,7 @@ class _RegisterState extends State<Register> {
                                 Navigator.pushReplacement<void, void>(
                                     context,
                                     MaterialPageRoute<void>(
-                                        builder: (BuildContext context) => Login()
+                                        builder: (BuildContext context) => Confirm()
                                     )
                                 );
                               }

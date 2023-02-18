@@ -120,18 +120,31 @@ class _ProfileState extends State<Profile> {
                           height: 10,
                         ),
                         Text(
-                          loggedinUser.email,
+                          loggedinUser.displayName,
                           style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
                         ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
                         Text(
-                          loggedinUser.displayName,
-                          style: TextStyle(
+                          loggedinUser.email,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          loggedinUser.uid,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
                           ),
                         ),
                       ],
@@ -147,10 +160,10 @@ class _ProfileState extends State<Profile> {
                     onPressed: () => {
                       signOut()
                     },
-                    child: Icon(Icons.logout),
                     backgroundColor: Colors.red,
+                    child: const Icon(Icons.logout)
                   )
-              ),
+              )
             )
           ]
       )

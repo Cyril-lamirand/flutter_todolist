@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // Widget(s)
+
+var currentUser;
 
 class AddTaskDialog extends StatefulWidget {
   const AddTaskDialog({
@@ -20,6 +23,23 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
   final TextEditingController taskDescController = TextEditingController();
   final List<String> taskTags = ['Work', 'School', 'Other'];
   late String selectedValue = '';
+  final _auth = FirebaseAuth.instance;
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+  void getCurrentUser() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        currentUser = user;
+        print(currentUser);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,6 +174,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
   Future _addTasks({required String taskName, required String taskDesc, required String taskTag}) async {
     DocumentReference docRef = await FirebaseFirestore.instance.collection('tasks').add(
       {
+        'userId': currentUser.uid,
         'taskName': taskName,
         'taskDesc': taskDesc,
         'taskTag': taskTag,

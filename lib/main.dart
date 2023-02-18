@@ -10,6 +10,7 @@ import 'views/register.dart';
 import 'views/login.dart';
 import 'views/home.dart';
 import 'views/profile.dart';
+import 'views/confirm.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder> {
         'welcome_screen': (context) => Welcome(),
         'registration_screen': (context) => Register(),
+        'confirm_screen': (context) => Confirm(),
         'login_screen': (context) => Login(),
         'profile_screen': (context) => Profile(),
         'home_screen': (context) => Home()

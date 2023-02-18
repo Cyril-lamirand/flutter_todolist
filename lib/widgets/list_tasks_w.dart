@@ -1,4 +1,6 @@
 // Default
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // Dependencies
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +9,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../dialogs/delete_task_d.dart';
 import '../dialogs/edit_task_d.dart';
 // Fragment(s)
+
+var currentUser;
 
 class ListTasksWidget extends StatefulWidget {
 
@@ -18,13 +22,31 @@ class ListTasksWidget extends StatefulWidget {
 
 class _ListTasksWidgetState extends State<ListTasksWidget> {
   final fireStore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+  void getCurrentUser() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        currentUser = user;
+        print(currentUser);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10.0),
       child: StreamBuilder<QuerySnapshot>(
-        stream: fireStore.collection('tasks').snapshots(),
+        stream: fireStore.collection('tasks').where('userId', isEqualTo: currentUser.uid).snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Text('Aucune tâche disponible');
