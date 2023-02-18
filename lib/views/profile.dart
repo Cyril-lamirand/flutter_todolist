@@ -20,7 +20,6 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final _auth = FirebaseAuth.instance;
-
   @override
   void initState() {
     super.initState();
@@ -128,8 +127,8 @@ class _ProfileState extends State<Profile> {
                             color: Colors.white,
                           ),
                         ),
-                        const Text(
-                          "Fuck",
+                        Text(
+                          loggedinUser.displayName,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
