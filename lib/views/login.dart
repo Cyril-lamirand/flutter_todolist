@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 // Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
 // Widget(s)
 import '../widgets/app_bar_w.dart';

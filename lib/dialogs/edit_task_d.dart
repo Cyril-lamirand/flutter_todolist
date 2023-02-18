@@ -157,7 +157,7 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
         .update({'taskName': taskName, 'taskDesc': taskDesc, 'taskTag': taskTag})
         .then(
           (_) => Fluttertoast.showToast(
-          msg: "Task updated successfully",
+          msg: "Mise à jour réussie !",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.SNACKBAR,
           backgroundColor: Colors.black54,

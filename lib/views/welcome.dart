@@ -69,7 +69,24 @@ class _WelcomeState extends State<Welcome> {
                   ]
               ),
             )
-          )
+          ),
+          const Positioned.fill(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 30.0),
+                child:
+                  Text(
+                    "Cyril LAMIRAND - 1.0.0",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0
+                    ),
+
+                  )
+                ),
+              ),
+            )
         ],
       )
     );

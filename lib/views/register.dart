@@ -3,7 +3,6 @@ import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 // Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 // Widget(s)
 import '../widgets/app_bar_w.dart';
 import '../widgets/rounded_button_w.dart';

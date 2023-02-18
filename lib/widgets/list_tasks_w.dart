@@ -27,13 +27,11 @@ class _ListTasksWidgetState extends State<ListTasksWidget> {
         stream: fireStore.collection('tasks').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return const Text('No tasks to display');
+            return const Text('Aucune tâche disponible');
           } else {
             return ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data = document.data()! as Map<
-                    String,
-                    dynamic>;
+                Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
                 Color taskColor = Colors.orange;
                 var taskTag = data['taskTag'];
                 if (taskTag == 'Work') {
@@ -74,7 +72,7 @@ class _ListTasksWidgetState extends State<ListTasksWidget> {
                           PopupMenuItem(
                             value: 'edit',
                             child: const Text(
-                              'Edit',
+                              'Modifier',
                               style: TextStyle(fontSize: 13.0),
                             ),
                             onTap: () {
@@ -99,7 +97,7 @@ class _ListTasksWidgetState extends State<ListTasksWidget> {
                           PopupMenuItem(
                             value: 'delete',
                             child: const Text(
-                              'Delete',
+                              'Supprimer',
                               style: TextStyle(fontSize: 13.0),
                             ),
                             onTap: () {

@@ -75,7 +75,7 @@ class _DeleteTaskDialogState extends State<DeleteTaskDialog> {
         .then(
           (_) =>
           Fluttertoast.showToast(
-              msg: "Task deleted successfully",
+              msg: "Suppression confirmée !az",
               toastLength: Toast.LENGTH_LONG,
               gravity: ToastGravity.SNACKBAR,
               backgroundColor: Colors.black54,
