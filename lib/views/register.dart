@@ -1,4 +1,5 @@
 // Default
+import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 // Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,104 +30,128 @@ class _RegisterState extends State<Register> {
   bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: appContainerDecoration,
-        child: Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: const AppBarWidget(title: "Inscription", hideActionProfile: true, actionReturnButton: true),
-            body: ModalProgressHUD(
-                inAsyncCall: showSpinner,
+
+    return Scaffold(
+        appBar: const AppBarWidget(title: "Inscription", hideActionProfile: true, actionReturnButton: true),
+        body: Stack(
+          children: <Widget>[
+            Positioned.fill(
+              child: Container(
+                color: Colors.deepPurple,
+              ),
+            ),
+            Positioned.fill(
+              child: FloatingBubbles.alwaysRepeating(
+                noOfBubbles: 50,
+                colorsOfBubbles: const [
+                  Colors.deepPurpleAccent,
+                  Colors.red,
+                ],
+                sizeFactor: 0.2,
+                opacity: 70,
+                speed: BubbleSpeed.slow,
+                paintingStyle: PaintingStyle.fill,
+                shape: BubbleShape.circle, //This is the default
+              ),
+            ),
+            Positioned(
                 child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          textAlign: TextAlign.center,
-                          onChanged: (value) {
-                            email = value;
-                            // Do something with the email input
-                          },
-                          decoration: kTextFieldDecoration.copyWith(
-                              hintText: 'Adresse e-mail...'
-                          ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        textAlign: TextAlign.center,
+                        onChanged: (value) {
+                          email = value;
+                        },
+                        decoration: kTextFieldDecoration.copyWith(
+                          hintText: 'Adresse e-mail...',
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        const SizedBox(
-                          height: 8.0,
+                      ),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      TextField(
+                        keyboardType: TextInputType.text,
+                        textAlign: TextAlign.center,
+                        onChanged: (value) {
+                          displayName = value;
+                        },
+                        decoration: kTextFieldDecoration.copyWith(
+                          hintText: 'Nom d\'utilisateur...',
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        TextField(
-                          keyboardType: TextInputType.text,
-                          textAlign: TextAlign.center,
-                          onChanged: (value) {
-                            displayName = value;
-                            // Do something with the email input
-                          },
-                          decoration: kTextFieldDecoration.copyWith(
-                              hintText: 'Nom d\'utilisateur...'
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 8.0,
-                        ),
-                        TextField(
-                            obscureText: true,
-                            textAlign: TextAlign.center,
-                            onChanged: (value) {
-                              password = value;
-                              // Do something with the password input
-                            },
-                            decoration: kTextFieldDecoration.copyWith(
-                                hintText: 'Mot de passe...'
-                            )
-                        ),
-                        const SizedBox(
-                          height: 8.0,
-                        ),
-                        TextField(
-                          keyboardType: TextInputType.phone,
-                          textAlign: TextAlign.center,
-                          onChanged: (value) {
-                            phoneNumber = value;
-                            // Do something with the email input
-                          },
-                          decoration: kTextFieldDecoration.copyWith(
-                              hintText: 'Téléphone...'
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 24.0,
-                        ),
-                        RoundedButton(
-                            colour: Colors.deepPurple.shade400,
-                            title: "S\'enregistrer",
-                            onPressed: () async {
-                              setState(() {
-                                showSpinner = true;
-                              });
-                              try {
-                                final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-                                if (newUser != null) {
-                                  Navigator.pushReplacement<void, void>(
-                                      context,
-                                      MaterialPageRoute<void>(
-                                          builder: (BuildContext context) => Login()
-                                      )
-                                  );
-                                }
-                              } catch(e) {
-                                print(e);
-                              }
-                              setState(() {
-                                showSpinner = false;
-                              });
-                            }
+                      ),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      TextField(
+                        obscureText: true,
+                        textAlign: TextAlign.center,
+                        onChanged: (value) {
+                          password = value;
+                        // Do something with the password input
+                        },
+                        decoration: kTextFieldDecoration.copyWith(
+                          hintText: 'Mot de passe...',
+                          filled: true,
+                          fillColor: Colors.white,
                         )
-                      ],
-                    )
+                      ),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      TextField(
+                        keyboardType: TextInputType.phone,
+                        textAlign: TextAlign.center,
+                        onChanged: (value) {
+                          phoneNumber = value;
+                        },
+                        decoration: kTextFieldDecoration.copyWith(
+                          hintText: 'Téléphone...',
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 24.0,
+                      ),
+                      RoundedButton(
+                        colour: Colors.deepPurple.shade400,
+                        title: "S\'enregistrer",
+                        onPressed: () async {
+                          setState(() {
+                            showSpinner = true;
+                          });
+                        try {
+                          final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                          if (newUser != null) {
+                            Navigator.pushReplacement<void, void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => Login()
+                              )
+                            );
+                          }
+                          } catch(e) {
+                            print(e);
+                          }
+                          setState(() {
+                            showSpinner = false;
+                          });
+                        }
+                      )
+                    ]
+                  )
                 )
             )
+          ]
         )
     );
   }

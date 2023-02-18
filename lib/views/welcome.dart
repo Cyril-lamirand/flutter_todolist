@@ -1,5 +1,7 @@
 // Default
 import 'package:flutter/material.dart';
+// Dependencies
+import 'package:floating_bubbles/floating_bubbles.dart';
 // Fragment(s)
 import '../fragments/box_decoration_f.dart';
 // Widget(s)
@@ -19,12 +21,31 @@ class Welcome extends StatefulWidget {
 class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: appContainerDecoration,
-        child: Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: Container(
+              color: Colors.deepPurple,
+            ),
+          ),
+          Positioned.fill(
+            child: FloatingBubbles.alwaysRepeating(
+              noOfBubbles: 50,
+              colorsOfBubbles: const [
+                Colors.deepPurpleAccent,
+                Colors.red,
+              ],
+              sizeFactor: 0.2,
+              opacity: 70,
+              speed: BubbleSpeed.slow,
+              paintingStyle: PaintingStyle.fill,
+              shape: BubbleShape.circle, //This is the default
+            ),
+          ),
+          Positioned(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,7 +69,9 @@ class _WelcomeState extends State<Welcome> {
                   ]
               ),
             )
-        )
+          )
+        ],
+      )
     );
   }
 }

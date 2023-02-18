@@ -1,4 +1,5 @@
 // Default
+import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 // Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,105 +51,109 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: appContainerDecoration,
-      child: Scaffold(
-          appBar: const AppBarWidget(title: "Profil" , hideActionProfile: true, actionReturnButton: true),
-          backgroundColor: Colors.transparent,
-          body: ListView(
-            children: <Widget>[
-              const SizedBox(
-                height: 30.0,
+    return Scaffold(
+      appBar: const AppBarWidget(title: "Profil" , hideActionProfile: true, actionReturnButton: true),
+      body: Stack(
+          children: <Widget>[
+            Positioned.fill(
+              child: Container(
+                color: Colors.deepPurple,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.deepPurpleAccent.shade200,
-                        minRadius: 35.0,
-                        child: const Icon(
-                          Icons.call,
-                          size: 30.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.deepPurpleAccent.shade100,
-                        minRadius: 60.0,
-                        child: const CircleAvatar(
-                          radius: 55.0,
-                          backgroundImage:
-                          NetworkImage('https://avatars.githubusercontent.com/u/59066441?v=4'),
-                        ),
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.deepPurpleAccent.shade200,
-                        minRadius: 35.0,
-                        child: const Icon(
-                          Icons.message,
-                          size: 30.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    loggedinUser.email,
-                    style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    'Développeur',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
+            ),
+            Positioned.fill(
+              child: FloatingBubbles.alwaysRepeating(
+                noOfBubbles: 50,
+                colorsOfBubbles: const [
+                  Colors.deepPurpleAccent,
+                  Colors.red,
                 ],
+                sizeFactor: 0.2,
+                opacity: 70,
+                speed: BubbleSpeed.slow,
+                paintingStyle: PaintingStyle.fill,
+                shape: BubbleShape.circle, //This is the default
               ),
-              Column(
+            ),
+            Positioned(
+                child: ListView(
                   children: <Widget>[
-                    Row(
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Date d'enregistrement"),
-                        Text("Test")
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: Colors.deepPurpleAccent.shade200,
+                              minRadius: 35.0,
+                              child: const Icon(
+                                Icons.call,
+                                size: 30.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                            CircleAvatar(
+                              backgroundColor: Colors.deepPurpleAccent.shade100,
+                              minRadius: 60.0,
+                              child: const CircleAvatar(
+                                radius: 55.0,
+                                backgroundImage:
+                                NetworkImage('https://avatars.githubusercontent.com/u/59066441?v=4'),
+                              ),
+                            ),
+                            CircleAvatar(
+                              backgroundColor: Colors.deepPurpleAccent.shade200,
+                              minRadius: 35.0,
+                              child: const Icon(
+                                Icons.message,
+                                size: 30.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          loggedinUser.email,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const Text(
+                          'Développeur',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
                       ],
                     ),
-
-                    Text(
-                      "Date d'enregistrement",
-                      style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 12
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(loggedinUser.isAnonymous.toString())
-                  ]
+                  ],
+                ),
+            ),
+            Positioned.fill(
+              child: Align(
+                  alignment: Alignment.center,
+                  child: FloatingActionButton(
+                    tooltip: "Déconnexion",
+                    onPressed: () => {
+                      signOut()
+                    },
+                    child: Icon(Icons.logout),
+                    backgroundColor: Colors.red,
+                  )
               ),
-              Text(loggedinUser.toString(), style: const TextStyle(fontSize: 12)),
-              FloatingActionButton(
-                onPressed: () => {
-                  signOut()
-                },
-                child: Icon(Icons.logout),
-                backgroundColor: Colors.red,
-              )
-            ],
-          )
-      ),
+            )
+          ]
+      )
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 InputDecoration appInputDecoration =
 const InputDecoration(
     hintText: 'Saisir...',
-    hintStyle: TextStyle(color: Colors.white),
+    hintStyle: TextStyle(color: Colors.deepPurple),
     contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(32.0)),
