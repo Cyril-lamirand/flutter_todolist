@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
           bottomNavigationBar: const BottomBarWidget(),
           extendBody: true,
           body: const ListTasksWidget(),
+          backgroundColor: Colors.transparent,
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
