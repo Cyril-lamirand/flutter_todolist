@@ -43,6 +43,7 @@ class _ProfileState extends State<Profile> {
       final user = _auth.currentUser;
       if (user != null) {
         loggedinUser = user;
+        print(loggedinUser);
       }
     } catch (e) {
       print(e);
@@ -128,7 +129,7 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         const Text(
-                          'Développeur',
+                          "Fuck",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,

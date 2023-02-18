@@ -1,8 +1,9 @@
 // Default
-import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 // Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:floating_bubbles/floating_bubbles.dart';
 // Widget(s)
 import '../widgets/app_bar_w.dart';
 import '../widgets/rounded_button_w.dart';
@@ -27,6 +28,7 @@ class _RegisterState extends State<Register> {
   late String displayName;
   late String phoneNumber;
   bool showSpinner = false;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
 
@@ -56,46 +58,66 @@ class _RegisterState extends State<Register> {
             Positioned(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          email = value;
-                        },
-                        decoration: kTextFieldDecoration.copyWith(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Saisir une adresse email valide !';
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            email = value;
+                          },
+                          decoration: kTextFieldDecoration.copyWith(
                           hintText: 'Adresse e-mail...',
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Colors.white
                         ),
                       ),
                       const SizedBox(
                         height: 8.0,
                       ),
-                      TextField(
+                      TextFormField(
                         keyboardType: TextInputType.text,
                         textAlign: TextAlign.center,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Saisir un nom d\'utilisateur valide !';
+                          }
+                          return null;
+                        },
                         onChanged: (value) {
                           displayName = value;
                         },
                         decoration: kTextFieldDecoration.copyWith(
                           hintText: 'Nom d\'utilisateur...',
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Colors.white
                         ),
                       ),
                       const SizedBox(
                         height: 8.0,
                       ),
-                      TextField(
+                      TextFormField(
                         obscureText: true,
                         textAlign: TextAlign.center,
                         onChanged: (value) {
                           password = value;
-                        // Do something with the password input
+                          // Do something with the password input
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Saisir un mot de passe (6 charactères minimum).';
+                          }
+                          return null;
                         },
                         decoration: kTextFieldDecoration.copyWith(
                           hintText: 'Mot de passe...',
@@ -104,22 +126,7 @@ class _RegisterState extends State<Register> {
                         )
                       ),
                       const SizedBox(
-                        height: 8.0,
-                      ),
-                      TextField(
-                        keyboardType: TextInputType.phone,
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          phoneNumber = value;
-                        },
-                        decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Téléphone...',
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 24.0,
+                        height: 32.0,
                       ),
                       RoundedButton(
                         colour: Colors.deepPurple.shade400,
@@ -128,18 +135,29 @@ class _RegisterState extends State<Register> {
                           setState(() {
                             showSpinner = true;
                           });
-                        try {
-                          final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-                          if (newUser != null) {
-                            Navigator.pushReplacement<void, void>(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) => Login()
-                              )
-                            );
-                          }
-                          } catch(e) {
-                            print(e);
+                          if(_formKey.currentState!.validate()) {
+                            try {
+                              UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                              User? user = result.user;
+                              user?.updateDisplayName(displayName);
+                              if (user != null) {
+                                Navigator.pushReplacement<void, void>(
+                                    context,
+                                    MaterialPageRoute<void>(
+                                        builder: (BuildContext context) => Login()
+                                    )
+                                );
+                              }
+                            } catch(e) {
+                              Fluttertoast.showToast(
+                                  msg: "Erreur: $e",
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.SNACKBAR,
+                                  backgroundColor: Colors.black54,
+                                  textColor: Colors.white,
+                                  fontSize: 14.0
+                              );
+                            }
                           }
                           setState(() {
                             showSpinner = false;
@@ -147,6 +165,7 @@ class _RegisterState extends State<Register> {
                         }
                       )
                     ]
+                    )
                   )
                 )
             )
@@ -154,4 +173,7 @@ class _RegisterState extends State<Register> {
         )
     );
   }
+}
+
+class Integer {
 }

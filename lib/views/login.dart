@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:floating_bubbles/floating_bubbles.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 // Widget(s)
 import '../widgets/app_bar_w.dart';
 import '../widgets/rounded_button_w.dart';
@@ -107,7 +108,14 @@ class _LoginState extends State<Login> {
                                     );
                                   }
                                 } catch (e) {
-                                  print(e);
+                                  Fluttertoast.showToast(
+                                      msg: "Erreur: $e",
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.SNACKBAR,
+                                      backgroundColor: Colors.black54,
+                                      textColor: Colors.white,
+                                      fontSize: 14.0
+                                  );
                                 }
                                 setState(() {
                                   showSpinner = false;
