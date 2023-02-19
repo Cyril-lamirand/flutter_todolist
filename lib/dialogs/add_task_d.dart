@@ -66,7 +66,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                     horizontal: 20,
                     vertical: 20,
                   ),
-                  hintText: 'Task',
+                  hintText: 'Libellé',
                   hintStyle: const TextStyle(fontSize: 14),
                   icon: const Icon(CupertinoIcons.square_list, color: Colors.deepPurple),
                   border: OutlineInputBorder(
@@ -109,7 +109,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                       ),
                       isExpanded: true,
                       hint: const Text(
-                        'Add a task tag',
+                        'Catégorie',
                         style: TextStyle(fontSize: 14),
                       ),
                       buttonHeight: 60,
