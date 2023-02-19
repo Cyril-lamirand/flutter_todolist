@@ -101,9 +101,8 @@ class _ProfileState extends State<Profile> {
                               minRadius: 60.0,
                               child: const CircleAvatar(
                                 radius: 55.0,
-                                backgroundImage:
-                                NetworkImage('https://avatars.githubusercontent.com/u/59066441?v=4'),
-                              ),
+                                backgroundImage: AssetImage("assets/user_account.png"),
+                              )
                             ),
                             CircleAvatar(
                               backgroundColor: Colors.deepPurpleAccent.shade200,
