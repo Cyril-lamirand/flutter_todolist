@@ -27,6 +27,7 @@ class _LoginState extends State<Login> {
   late String email;
   late String password;
   bool showSpinner = false;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -56,73 +57,90 @@ class _LoginState extends State<Login> {
               Positioned(
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          TextField(
-                            keyboardType: TextInputType.emailAddress,
-                            textAlign: TextAlign.center,
-                            onChanged: (value) {
-                              email = value;
-                            },
-                            decoration: kTextFieldDecoration.copyWith(
-                              hintText: "Adresse email...",
-                              filled: true,
-                              fillColor: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8.0,
-                          ),
-                          TextField(
-                            obscureText: true,
-                            textAlign: TextAlign.center,
-                            onChanged: (value) {
-                              password = value;
-                            },
-                            decoration: kTextFieldDecoration.copyWith(
-                              hintText: 'Mot de passe...',
-                              filled: true,
-                              fillColor: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 24.0,
-                          ),
-                          RoundedButton(
-                              colour: Colors.deepPurpleAccent.shade200,
-                              title: "S\'authentifier",
-                              onPressed: () async {
-                                setState(() {
-                                  showSpinner = true;
-                                });
-                                try {
-                                  final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
-                                  if (user != null) {
-                                    Navigator.pushReplacement<void, void>(
-                                        context,
-                                        MaterialPageRoute<void>(
-                                            builder: (BuildContext context) => Home()
-                                        )
-                                    );
+                      child: Form(
+                        key: _formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Saisir une adresse email valide !';
                                   }
-                                } catch (e) {
-                                  Fluttertoast.showToast(
-                                      msg: "Erreur: $e",
-                                      toastLength: Toast.LENGTH_LONG,
-                                      gravity: ToastGravity.SNACKBAR,
-                                      backgroundColor: Colors.black54,
-                                      textColor: Colors.white,
-                                      fontSize: 14.0
-                                  );
+                                  return null;
+                                },
+                                keyboardType: TextInputType.emailAddress,
+                                textAlign: TextAlign.center,
+                                onChanged: (value) {
+                                  email = value;
+                                },
+                                decoration: kTextFieldDecoration.copyWith(
+                                  hintText: "Adresse email...",
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Saisir votre mot de passe !';
+                                  }
+                                  return null;
+                                },
+                                obscureText: true,
+                                textAlign: TextAlign.center,
+                                onChanged: (value) {
+                                  password = value;
+                                },
+                                decoration: kTextFieldDecoration.copyWith(
+                                  hintText: 'Mot de passe...',
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 24.0,
+                              ),
+                              RoundedButton(
+                                colour: Colors.deepPurpleAccent.shade200,
+                                title: "S\'authentifier",
+                                onPressed: () async {
+                                  setState(() {
+                                    showSpinner = true;
+                                  });
+                                  if(_formKey.currentState!.validate()) {
+                                    try {
+                                      final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                                      if (user != null) {
+                                        Navigator.pushReplacement<void, void>(
+                                          context,
+                                          MaterialPageRoute<void>(
+                                            builder: (BuildContext context) => Home()
+                                          )
+                                        );
+                                      }
+                                    } catch (e) {
+                                      Fluttertoast.showToast(
+                                        msg: "Erreur: $e",
+                                        toastLength: Toast.LENGTH_LONG,
+                                        gravity: ToastGravity.SNACKBAR,
+                                        backgroundColor: Colors.black54,
+                                        textColor: Colors.white,
+                                        fontSize: 14.0
+                                      );
+                                    }
+                                  }
+                                  setState(() {
+                                    showSpinner = false;
+                                  });
                                 }
-                                setState(() {
-                                  showSpinner = false;
-                                });
-                              }
+                              )
+                            ],
                           )
-                        ],
                       )
                   )
               )
