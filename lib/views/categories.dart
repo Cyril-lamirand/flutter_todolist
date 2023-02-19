@@ -26,7 +26,7 @@ class _CategoriesState extends State<Categories> {
     return Container(
         decoration: appContainerDecoration,
         child: Scaffold(
-          appBar: const AppBarWidget(title: "Categories", hideActionProfile: false, actionReturnButton: true),
+          appBar: const AppBarWidget(title: "Categories", hideActionProfile: true, actionReturnButton: true),
           bottomNavigationBar: const BottomBarWidget(),
           backgroundColor: Colors.transparent,
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -107,7 +107,6 @@ class _CategoriesState extends State<Categories> {
             )
           )
         )
-
     );
   }
 }
