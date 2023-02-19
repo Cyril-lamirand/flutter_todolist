@@ -39,3 +39,7 @@ Vous constaterez que j'ai malheuresement pas fini l'onglet "Catégories" du proj
 - Devoir créer une catégorie par defaut dès lors qu'un utilisateur s'enregistre sur l'app.
 - Intégrer un Color Picker, enregistré la data dans Firebase pour chaque catégorie.
 - Empêcher l'utilisateur de supprimer la catégorie s'il y en a qu'une (bug sinon)
+
+## Schema 
+![schema](https://user-images.githubusercontent.com/59066441/219970284-656fe0b4-7209-421d-a955-3a084db56aac.png)
+
