@@ -32,3 +32,10 @@ Almost ;) You can use it for a school project, for a demo, but not for publishin
 
 Linter :
 - Flutter-lints : <i>2.0.0</i>
+
+## For Giovanni 
+
+Vous constaterez que j'ai malheuresement pas fini l'onglet "Catégories" du projet. Je voulais faire en sorte qu'un utilisateur puisse avoir ses propres catégories avec le choix des couleurs. Cela m'aurait demander de repenser une bonne partie de l'application :
+- Devoir créer une catégorie par defaut dès lors qu'un utilisateur s'enregistre sur l'app.
+- Intégrer un Color Picker, enregistré la data dans Firebase pour chaque catégorie.
+- Empêcher l'utilisateur de supprimer la catégorie s'il y en a qu'une (bug sinon)
