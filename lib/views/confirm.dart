@@ -12,12 +12,6 @@ class Confirm extends StatefulWidget {
 
 class _ConfirmState extends State<Confirm> {
 
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
-
-  void onEnd() {
-    print('onEnd');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,8 +82,11 @@ class _ConfirmState extends State<Confirm> {
                               backgroundGradient: null,
                               strokeWidth: 20.0,
                               strokeCap: StrokeCap.round,
-                              textStyle: TextStyle(
-                              fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
+                              textStyle: const TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
+                              ),
                               textFormat: CountdownTextFormat.S,
                               isReverse: false,
                               isReverseAnimation: false,
@@ -97,10 +94,10 @@ class _ConfirmState extends State<Confirm> {
                               autoStart: true,
                               onComplete: () {
                                 Navigator.pushReplacement<void, void>(
-                                    context,
-                                    MaterialPageRoute<void>(
-                                        builder: (BuildContext context) => Home()
-                                    )
+                                  context,
+                                  MaterialPageRoute<void>(
+                                      builder: (BuildContext context) => Home()
+                                  )
                                 );
                               },
                               timeFormatterFunction: (defaultFormatterFunction, duration) {

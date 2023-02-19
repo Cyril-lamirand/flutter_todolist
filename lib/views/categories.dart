@@ -26,9 +26,8 @@ class _CategoriesState extends State<Categories> {
     return Container(
         decoration: appContainerDecoration,
         child: Scaffold(
-          appBar: const AppBarWidget(title: "Categories", hideActionProfile: false, actionReturnButton: false),
+          appBar: const AppBarWidget(title: "Categories", hideActionProfile: false, actionReturnButton: true),
           bottomNavigationBar: const BottomBarWidget(),
-          extendBody: true,
           backgroundColor: Colors.transparent,
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
@@ -45,109 +44,67 @@ class _CategoriesState extends State<Categories> {
           ),
           body: Container(
             margin: const EdgeInsets.all(10.0),
-            child: StreamBuilder<QuerySnapshot>(
-              stream: fireStore.collection('tasks').where('userId', isEqualTo: currentUser.uid).snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return const Text('Aucune tâche disponible');
-                } else {
-                  return ListView(
-                    children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                      Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-                      Color taskColor = Colors.orange;
-                      var taskTag = data['taskTag'];
-                      if (taskTag == 'Travail') {
-                        taskColor = Colors.blue;
-                      } else if (taskTag == 'École') {
-                        taskColor = Colors.green;
-                      }
-                      return Container(
-                        height: 100,
-                        margin: const EdgeInsets.only(bottom: 15.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: Colors.white,
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black45,
-                              blurRadius: 5.0,
-                              offset: Offset(0, 5), // shadow direction: bottom right
-                            ),
-                          ],
-                        ),
-                        child: ListTile(
-                          leading: Container(
-                            width: 20,
-                            height: 20,
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            alignment: Alignment.center,
-                            child: CircleAvatar(
-                              backgroundColor: taskColor,
-                            ),
-                          ),
-                          title: Text(data['taskName']),
-                          subtitle: Text(data['taskDesc']),
-                          isThreeLine: true,
-                          trailing: PopupMenuButton(
-                            itemBuilder: (context) {
-                              return [
-                                PopupMenuItem(
-                                  value: 'edit',
-                                  child: const Text(
-                                    'Modifier',
-                                    style: TextStyle(fontSize: 13.0),
-                                  ),
-                                  onTap: () {
-                                    String taskId = (data['id']);
-                                    String taskName = (data['taskName']);
-                                    String taskDesc = (data['taskDesc']);
-                                    String taskTag = (data['taskTag']);
-                                    Future.delayed(
-                                      const Duration(seconds: 0),
-                                          () =>
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) =>
-                                                EditTaskDialog(taskId: taskId,
-                                                  taskName: taskName,
-                                                  taskDesc: taskDesc,
-                                                  taskTag: taskTag,),
-                                          ),
-                                    );
-                                  },
-                                ),
-                                PopupMenuItem(
-                                  value: 'delete',
-                                  child: const Text(
-                                    'Supprimer',
-                                    style: TextStyle(fontSize: 13.0),
-                                  ),
-                                  onTap: () {
-                                    String taskId = (data['id']);
-                                    String taskName = (data['taskName']);
-                                    Future.delayed(
-                                      const Duration(seconds: 0),
-                                          () =>
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) =>
-                                                DeleteTaskDialog(taskId: taskId,
-                                                    taskName: taskName),
-                                          ),
-                                    );
-                                  },
-                                ),
-                              ];
-                            },
-                          ),
-                          dense: true,
-                        ),
-                      );
-                    }).toList(),
-                  );
-                }
-              },
-            ),
+            child: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 10.0,
+                ),
+                const Text(
+                  "Objectif de cette page",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 10.0, right: 15.0),
+                  child: const Divider(
+                    color: Colors.white,
+                    height: 10.0,
+                  )
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                const Text(
+                  "J'avais pour objectif d'afficher les <ToDos> par catégorie et de permettre à l'utilisateur de créer ses propres catégories.",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                const Text(
+                  "Pour pouvoir faire cela, j'aurais du repenser une bonne partie de l'application, notamment la création d'une catégorie par défaut à chaque enregistrement d'un nouvel utilisateur.",
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                const Text(
+                  "Et bien sûr, d'empêcher l'utilisateur de supprimer cette catégorie, car sinon cela aurait provoqué une erreur dans la liste des catégories pour pouvoir créer une ToDo...",
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                const Text(
+                  "Peut-être dans une v2 :D",
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                )
+              ],
+            )
           )
         )
 

@@ -111,7 +111,6 @@ class _RegisterState extends State<Register> {
                         textAlign: TextAlign.center,
                         onChanged: (value) {
                           password = value;
-                          // Do something with the password input
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -142,20 +141,20 @@ class _RegisterState extends State<Register> {
                               user?.updateDisplayName(displayName);
                               if (user != null) {
                                 Navigator.pushReplacement<void, void>(
-                                    context,
-                                    MaterialPageRoute<void>(
-                                        builder: (BuildContext context) => Confirm()
-                                    )
+                                  context,
+                                  MaterialPageRoute<void>(
+                                      builder: (BuildContext context) => Confirm()
+                                  )
                                 );
                               }
                             } catch(e) {
                               Fluttertoast.showToast(
-                                  msg: "Erreur: $e",
-                                  toastLength: Toast.LENGTH_LONG,
-                                  gravity: ToastGravity.SNACKBAR,
-                                  backgroundColor: Colors.black54,
-                                  textColor: Colors.white,
-                                  fontSize: 14.0
+                                msg: "Erreur: $e",
+                                toastLength: Toast.LENGTH_LONG,
+                                gravity: ToastGravity.SNACKBAR,
+                                backgroundColor: Colors.black54,
+                                textColor: Colors.white,
+                                fontSize: 14.0
                               );
                             }
                           }
