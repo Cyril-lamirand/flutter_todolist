@@ -26,7 +26,7 @@ class _CategoriesState extends State<Categories> {
     return Container(
         decoration: appContainerDecoration,
         child: Scaffold(
-          appBar: const AppBarWidget(title: "Categories", hideActionProfile: true, actionReturnButton: true),
+          appBar: const AppBarWidget(title: "Categories", hideActionProfile: false, actionReturnButton: false),
           bottomNavigationBar: const BottomBarWidget(),
           backgroundColor: Colors.transparent,
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
