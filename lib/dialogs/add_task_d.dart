@@ -21,7 +21,7 @@ class AddTaskDialog extends StatefulWidget {
 class _AddTaskDialogState extends State<AddTaskDialog> {
   final TextEditingController taskNameController = TextEditingController();
   final TextEditingController taskDescController = TextEditingController();
-  final List<String> taskTags = ['Work', 'School', 'Other'];
+  final List<String> taskTags = ['Travail', 'École', 'Autres'];
   late String selectedValue = '';
   final _auth = FirebaseAuth.instance;
   @override
@@ -48,7 +48,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
     return AlertDialog(
       scrollable: true,
       title: const Text(
-        'New Task',
+        'Nouvelle tâche',
         textAlign: TextAlign.center,
         style: TextStyle(fontSize: 16, color: Colors.deepPurple),
       ),

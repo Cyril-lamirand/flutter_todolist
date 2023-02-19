@@ -21,7 +21,7 @@ class EditTaskDialog extends StatefulWidget {
 class _EditTaskDialogState extends State<EditTaskDialog> {
   final TextEditingController taskNameController = TextEditingController();
   final TextEditingController taskDescController = TextEditingController();
-  final List<String> taskTags = ['Work', 'School', 'Other'];
+  final List<String> taskTags = ['Travail', 'École', 'Autres'];
   String selectedValue = '';
 
   @override

@@ -56,9 +56,9 @@ class _ListTasksWidgetState extends State<ListTasksWidget> {
                 Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
                 Color taskColor = Colors.orange;
                 var taskTag = data['taskTag'];
-                if (taskTag == 'Work') {
+                if (taskTag == 'Travail') {
                   taskColor = Colors.blue;
-                } else if (taskTag == 'School') {
+                } else if (taskTag == 'École') {
                   taskColor = Colors.green;
                 }
                 return Container(

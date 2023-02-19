@@ -25,6 +25,7 @@ class _CategoriesState extends State<Categories> {
           appBar: const AppBarWidget(title: "Categories", hideActionProfile: false, actionReturnButton: false),
           bottomNavigationBar: const BottomBarWidget(),
           extendBody: true,
+          backgroundColor: Colors.transparent,
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -35,7 +36,7 @@ class _CategoriesState extends State<Categories> {
                 },
               );
             },
-            backgroundColor: Colors.deepPurple,
+            backgroundColor: Colors.deepPurpleAccent,
             child: const Icon(Icons.add),
           ),
         )

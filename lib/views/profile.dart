@@ -42,7 +42,6 @@ class _ProfileState extends State<Profile> {
       final user = _auth.currentUser;
       if (user != null) {
         loggedinUser = user;
-        print(loggedinUser);
       }
     } catch (e) {
       print(e);
@@ -146,6 +145,193 @@ class _ProfileState extends State<Profile> {
                             fontSize: 10,
                           ),
                         ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                          child: Table(
+                            border: TableBorder.all(color: Colors.tealAccent),
+                            children: <TableRow>[
+                              TableRow(
+                                  children: <Widget>[
+                                     const TableCell(
+                                        child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                            child: Text(
+                                              "uid",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12.0
+                                              ),
+                                            )
+                                        )
+                                    ),
+                                    TableCell(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                          child: Text(
+                                              loggedinUser.uid,
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.0,
+                                              )
+                                          ),
+                                        )
+
+                                    )
+                                  ]
+                              ),
+                              TableRow(
+                                  children: <Widget>[
+                                    const TableCell(
+                                        child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                            child: Text(
+                                              "email",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12.0
+                                              ),
+                                            )
+                                        )
+                                    ),
+                                    TableCell(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                          child: Text(
+                                              loggedinUser.email,
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.0,
+                                              )
+                                          ),
+                                        )
+
+                                    )
+                                  ]
+                              ),
+                              TableRow(
+                                  children: <Widget>[
+                                    const TableCell(
+                                        child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                            child: Text(
+                                              "displayName",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12.0
+                                              ),
+                                            )
+                                        )
+                                    ),
+                                    TableCell(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                          child: Text(
+                                              loggedinUser.displayName,
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.0,
+                                              )
+                                          ),
+                                        )
+
+                                    )
+                                  ]
+                              ),
+                              const TableRow(
+                                  children: <Widget>[
+                                    TableCell(
+                                        child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                            child: Text(
+                                              "phoneNumber",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12.0
+                                              ),
+                                            )
+                                        )
+                                    ),
+                                    TableCell(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                          child: Text(
+                                              "null",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.0,
+                                              )
+                                          ),
+                                        )
+
+                                    )
+                                  ]
+                              ),
+                              TableRow(
+                                  children: <Widget>[
+                                    const TableCell(
+                                        child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                            child: Text(
+                                              "emailVerified",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12.0
+                                              ),
+                                            )
+                                        )
+                                    ),
+                                    TableCell(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                          child: Text(
+                                              loggedinUser.emailVerified ? "true" : "false",
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.0,
+                                              )
+                                          ),
+                                        )
+
+                                    )
+                                  ]
+                              ),
+                              TableRow(
+                                  children: <Widget>[
+                                    const TableCell(
+                                        child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                            child: Text(
+                                              "isAnonymous",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12.0
+                                              ),
+                                            )
+                                        )
+                                    ),
+                                    TableCell(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                                          child: Text(
+                                              loggedinUser.isAnonymous ? "true" : "false",
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.0,
+                                              )
+                                          ),
+                                        )
+
+                                    )
+                                  ]
+                              ),
+
+                            ],
+                          )
+                        )
+
                       ],
                     ),
                   ],
@@ -153,15 +339,18 @@ class _ProfileState extends State<Profile> {
             ),
             Positioned.fill(
               child: Align(
-                  alignment: Alignment.center,
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 60.0),
                   child: FloatingActionButton(
-                    tooltip: "Déconnexion",
-                    onPressed: () => {
-                      signOut()
-                    },
-                    backgroundColor: Colors.red,
-                    child: const Icon(Icons.logout)
+                      tooltip: "Déconnexion",
+                      onPressed: () => {
+                        signOut()
+                      },
+                      backgroundColor: Colors.red,
+                      child: const Icon(Icons.logout)
                   )
+                )
               )
             )
           ]

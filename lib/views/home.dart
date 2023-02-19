@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
                 },
               );
             },
-            backgroundColor: Colors.deepPurple,
+            backgroundColor: Colors.deepPurpleAccent,
             child: const Icon(Icons.add),
           ),
         )
